@@ -1,0 +1,31 @@
+Run the following command on your control server to setup ansible
+
+sudo yum install epel-release
+sudo yum install ansible
+
+Add user ansible as a user on the control server 
+sudo adduser ansible
+
+ssh to the remote server and add ansible as a user and set a password for the user
+sudo adduser ansible
+sudo passwd ansible
+
+Go back to the control server, switch to the ansible user and create a ssh key
+sudo su - ansible
+ssh-keygen
+ssh-copy-id [enter server ip or serever name]
+enter the password you entered above
+
+test to see if the ansible user can ssh to the server without the need for password
+ssh {server ip or name}
+
+Configure sudo access for Ansible on the `remote server` and the `control server` such that Ansible may use sudo for any command with no password prompt.
+ssh to the reomte server using the regular user
+sudo visudo
+add ansible user to sudoers at the buttom of the file 
+logout
+
+back to the control server 
+vim /home/ansible/inventory
+Add the remote server name or ip to the inventory
+
